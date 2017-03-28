@@ -1,6 +1,7 @@
 " Color scheme, syntax, and encoding {{{
 colorscheme badwolf		" colorscheme
 set encoding=utf-8
+scriptencoding utf-8
 syntax enable			" enable syntax processing
 " }}}
 
@@ -48,7 +49,6 @@ Plug 'nsf/gocode'
 " autocomplete, required pip3 install neovim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --clang-completer' } " the do runs the command on updates, which is required
 " status bars
 Plug 'itchyny/lightline.vim'
 
@@ -62,7 +62,7 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_commang = "goimports"
+let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_options = '-s '
 let g:go_highlight_string_spellcheck = 1
@@ -98,11 +98,55 @@ let g:go_metalinter_enabled  = [
 
 " lightline config {{{
 let g:lightline = {
-	  \	'component': {
-      \   'readonly': '%{&readonly?"":""}',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
       \ },
-      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+      \ 'component_function': {
+      \   'fugitive': 'LightlineFugitive',
+      \   'readonly': 'LightlineReadonly',
+      \   'modified': 'LightlineModified',
+      \   'filename': 'LightlineFilename'
+      \ }, 
+	  \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
 	  \ }
+
+" }}}
+
+" lightline functions {{{
+
+function! LightlineModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return "⭤"
+  else
+    return ""
+  endif
+endfunction
+
+function! LightlineFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+       \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+       \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
 " }}}
 " vim: foldmethod=marker:foldlevel=0
