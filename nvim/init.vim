@@ -97,10 +97,10 @@ let g:go_metalinter_enabled  = [
 " }}}
 
 " lightline config {{{
+" This is using the powerline patched fonts!
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive','filename' ] ]
       \ },
       \ 'component_function': {
       \   'fugitive': 'LightlineFugitive',
@@ -108,8 +108,8 @@ let g:lightline = {
       \   'modified': 'LightlineModified',
       \   'filename': 'LightlineFilename'
       \ }, 
-	  \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+	  \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
 	  \ }
 
 " }}}
@@ -132,14 +132,14 @@ function! LightlineReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return "⭤"
+    return ""
   else
     return ""
   endif
 endfunction
 
 function! LightlineFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
+  return exists('*fugitive#head') ? '' . fugitive#head() : ''
 endfunction
 
 function! LightlineFilename()
