@@ -68,7 +68,6 @@ if has('clipboard')
 endif
 " }}}
 
-
 " Cursor movement {{{
 nnoremap j gj			" move cursor down by visual line
 nnoremap k gk			" move cursor up by visual line
@@ -228,7 +227,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
 let g:go_fmt_fail_silently = 0
-let g:go_fmt_options = '-s '
+"let g:go_fmt_options = '-s '
 let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 1
@@ -264,6 +263,10 @@ let g:go_metalinter_enabled  = [
       \ 'vetshadow',
 \ ]
 let g:go_metalinter_deadline = "30s"
+
+" Disable polyglot to not interfere with vim-go's autocomplete
+let g:polyglot_disabled = ['go']
+
 " }}}
 
 " Deoplete config {{{
@@ -283,7 +286,7 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 let g:deoplete#sources#go#align_class = 1
 
 " }}}
-"
+
 " lightline config {{{
 let g:lightline = {
       \ 'colorscheme': 'onedark',
