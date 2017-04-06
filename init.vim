@@ -129,6 +129,10 @@ Plug 'ton/vim-bufsurf'
 Plug 'neomake/neomake'
 " Hive SQL highlighting
 Plug 'autowitch/hive.vim'
+
+Plug 'neovim/node-host', { 'do': 'npm install' }
+Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+
 call plug#end()
 " }}}
 
