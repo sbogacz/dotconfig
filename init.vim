@@ -129,10 +129,18 @@ Plug 'ton/vim-bufsurf'
 Plug 'neomake/neomake'
 " Hive SQL highlighting
 Plug 'autowitch/hive.vim'
-
+" Markdown previewer
 Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+" Protobuf
 Plug 'uarun/vim-protobuf'
+" Jupyter fron end for Neovim
+Plug 'bfredl/nvim-ipy'
+" Dart support
+Plug 'dart-lang/dart-vim-plugin'
+" Python support
+Plug 'davidhalter/jedi-vim'
+Plug 'mindriot101/vim-yapf'
 
 call plug#end()
 " }}}
@@ -242,6 +250,7 @@ au FileType go nmap <leader>ds <Plug>(go-def-split)
 au FileType go nmap <leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <leader>dt <Plug>(go-def-tab)
 au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>dd <Plug>(go-def)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
@@ -369,6 +378,10 @@ command! -bang RgRepeat call rubix#fzf#rg_repeat(<bang>0)
 command! -bang AgRepeat call rubix#fzf#ag_repeat(<bang>0)
 command! -bang RubixHistory call rubix#fzf#history(<bang>0)
 
+" }}}
+
+" jedi (Python) config {{{
+"autocmd BufWritePost *.py Yapf<cr>
 " }}}
 
 " vim: foldmethod=marker:foldlevel=0
