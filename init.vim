@@ -135,6 +135,8 @@ Plug 'autowitch/hive.vim'
 " Markdown previewer
 Plug 'neovim/node-host', { 'do': 'npm install' }
 Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+" Protobuf
+Plug 'uarun/vim-protobuf'
 " Jupyter fron end for Neovim
 Plug 'bfredl/nvim-ipy'
 " Dart support
@@ -247,6 +249,7 @@ let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
+au FileType go nmap <leader>dd <Plug>(go-def)
 au FileType go nmap <leader>ds <Plug>(go-def-split)
 au FileType go nmap <leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <leader>dt <Plug>(go-def-tab)
