@@ -33,6 +33,9 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+" use latex by default
+let g:tex_flavor = "latex"
 " }}}
 
 " Tab settings {{{
@@ -139,7 +142,8 @@ Plug 'dart-lang/dart-vim-plugin'
 " Python support
 Plug 'davidhalter/jedi-vim'
 Plug 'mindriot101/vim-yapf'
-
+" LaTex support
+Plug 'lervag/vimtex'
 call plug#end()
 " }}}
 
