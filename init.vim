@@ -133,8 +133,7 @@ Plug 'neomake/neomake'
 " Hive SQL highlighting
 Plug 'autowitch/hive.vim'
 " Markdown previewer
-Plug 'neovim/node-host', { 'do': 'npm install' }
-Plug 'vimlab/mdown.vim', { 'do': 'npm install' }
+Plug 'euclio/vim-markdown-composer', { 'do': 'cargo build --release' }
 " Protobuf
 Plug 'uarun/vim-protobuf'
 " Jupyter fron end for Neovim
