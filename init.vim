@@ -148,6 +148,8 @@ Plug 'joshdick/onedark.vim'
 " Terraform support
 Plug 'hashivim/vim-terraform'
 
+" TypeScript support
+Plug 'mhartington/nvim-typescript'
 call plug#end()
 " }}}
 
