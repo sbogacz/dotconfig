@@ -106,7 +106,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Git
 Plug 'tpope/vim-fugitive'
 " Go
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode'
 " Autocomplete, required pip3 install neovim
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -115,8 +115,6 @@ Plug 'zchee/deoplete-go'
 Plug 'itchyny/lightline.vim'
 " Broad language support
 Plug 'sheerun/vim-polyglot'
-" HackerNews client
-Plug 'ryanss/vim-hackernews'
 " Filesystem navigation
 Plug 'scrooloose/nerdtree'
 " Fuzzy finder
@@ -145,6 +143,11 @@ Plug 'davidhalter/jedi-vim'
 Plug 'mindriot101/vim-yapf'
 " LaTex support
 Plug 'lervag/vimtex'
+" color schemes
+Plug 'joshdick/onedark.vim'
+" Terraform support
+Plug 'hashivim/vim-terraform'
+
 call plug#end()
 " }}}
 
@@ -164,7 +167,7 @@ endif
 " Neomake config {{{
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
-let g:neomake_go_enabled_makers = [ 'gofmt', 'go', 'zblint' ]
+let g:neomake_go_enabled_makers = [ 'gofmt', 'go', 'gometalinter' ]
 
 autocmd MyAutoCmd BufWritePost * if expand('%') !~ '^fugitive:\/\/' | Neomake | endif
 
@@ -387,4 +390,7 @@ command! -bang RubixHistory call rubix#fzf#history(<bang>0)
 "autocmd BufWritePost *.py Yapf<cr>
 " }}}
 
+" Terraform config {{{
+autocmd MyAutoCmd BufWritePost *.tf :TerraformFmt 
+" }}}
 " vim: foldmethod=marker:foldlevel=0
