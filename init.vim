@@ -247,8 +247,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_fmt_command = "goimports"
+let g:go_metalinter_command = "golangci-lint"
 let g:go_fmt_fail_silently = 0
-"let g:go_fmt_options = '-s '
+let g:go_fmt_options = '-s '
 let g:go_highlight_string_spellcheck = 1
 let g:go_highlight_format_strings = 1
 let g:go_auto_type_info = 1
@@ -262,13 +263,13 @@ au FileType go nmap <leader>dd <Plug>(go-def)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>e <Plug>(go-iferr)
 autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 let g:go_metalinter_enabled  = [
       \ 'deadcode',
       \ 'errcheck',
-      \ 'gas',
       \ 'goconst',
       \ 'gofmt',
       \ 'goimports',
@@ -393,6 +394,8 @@ command! -bang RubixHistory call rubix#fzf#history(<bang>0)
 " }}}
 
 " Terraform config {{{
-autocmd MyAutoCmd BufWritePost *.tf :TerraformFmt 
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+"autocmd MyAutoCmd BufWritePost *.tf :TerraformFmt 
 " }}}
 " vim: foldmethod=marker:foldlevel=0
